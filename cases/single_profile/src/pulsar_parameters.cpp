@@ -6,21 +6,21 @@ using namespace std;
 #include "pulsar_parameters.h"
 
 const double B12 = 1.0;
-const double Period = 1.0; // Rotation period in sec // normally 1.0
+const double Period = 0.2; // Rotation period in sec // normally 1.0
 const double freqGHz = 1.0; // Radiation frequency in GHz // normally 1.0
 
-const double lambda = 500.0; // Plasma multiplicity // normally 10000
-const double gamma0 = 25.0; // Plasma mean gamma factor // normally 50
+const double lambda = 5000.0; // Plasma multiplicity // normally 10000
+const double gamma0 = 1000.0; // Plasma mean gamma factor // normally 50
 const double f0 = 0.6; // Polar Cap gap width // normally 0.5
-const double R_em = 50.0; // Emission radius in star radii
+const double R_em = 30.0; // Emission radius in star radii
 
 const double mode = 1; // 1 = O-mode & 0 = X-mode
 const double fr = 1.0; // Split-monopole parameter
 const double fphi = 1.0; // Split-monopole parameter
 const double BMULT = 0.0; // Toroidal field multiplier
 
-const double alpha_deg = 70.0;
-const double beta_deg = 7.0;
+const double alpha_deg = 60.0;
+const double beta_deg = -5.0;
 
 double alpha; // Inclination angle in radians
 double beta; // Line of sight angle in radians;

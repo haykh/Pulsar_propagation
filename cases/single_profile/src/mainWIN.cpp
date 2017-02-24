@@ -48,7 +48,7 @@ int main() {
     else MODE = "O-mode";
 
     string name = "hump";
-    string path = "dats/hump/";
+    string path = "dats/test/";
 
     struct stat st = {0};
     if (stat(path.c_str(), &st) == -1) {
@@ -82,13 +82,22 @@ int main() {
     ofstream output0(path + name + "[0].dat");
     ofstream output1(path + name + "[1].dat");
 
-    for (double phi_t = -40; phi_t <= 20; phi_t += 0.5) { // Phase switch
+/*    ofstream plot(path + "betadelta.dat");
+    PHI0 = 5 * PI / 180.0;
+    findInitPoints(PHI0);
+    for (double r = 10.0; r <= 400; r += 1.0) {
+    	plot << r << " " << BetaB(r) + delta(r) << "\n";
+    }
+    plot.close();
+    return 0;
+*/
+    for (double phi_t = -30; phi_t <= 15; phi_t += 1.0) { // Phase switch
         cout << "PHI: " << phi_t << endl;
         PHI0 = phi_t * PI / 180.0;
         findInitPoints (PHI0);
 
         double x1, x2, dep_vars[2];
-        x1 = 10;
+        x1 = 12.0;
         if (RESCAPE < 1000.0) x2 = 1000.0;
         else x2 = RESCAPE;
 
