@@ -16,3 +16,7 @@
 # Archives #
 *.zip
 *.gz
+
+# mac OS files #
+.DS_Store
+.ipynb*/
