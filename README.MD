@@ -10,5 +10,4 @@ _Note that `src/` is a temporary directory, created after `Makefile` is called. 
 `.gitignore` file contains all the extensions and folders that we don't want to share to github, such as executables, images, outputs, python files, etc.
 
 ### Things to do
-- Add parser for parameters from text file instead of `pulsar_parameters.*`.
 - Write density routine for any given ___B___-field.
