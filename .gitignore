@@ -1,5 +1,18 @@
+# DAT files #
 *.dat
+
+# Images #
+*.eps
 *.png
+
+# Python
 *.py
+*.pyc
+*.ipynb
+
+# Executables #
 *.o
+
+# Archives #
 *.zip
+*.gz

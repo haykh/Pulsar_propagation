@@ -1,4 +1,4 @@
-#pragma GEOMETRIC_FUNCTIONS
+#pragma PROCESS_FUNCTIONS
 using namespace std;
 
 vector <double> vB(double R);

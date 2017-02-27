@@ -15,8 +15,8 @@ using namespace std;
 #include "../lib/pulsar_parameters.h"
 
 #include "../lib/functions.h"
-#include "../lib/geometric_functions.h"
-#include "../lib/physical_functions.h"
+#include "../lib/process_functions.h"
+#include "../lib/auxilary.h"
 
 #include "../lib/integrator.h"
 #include "../lib/RHS.h"

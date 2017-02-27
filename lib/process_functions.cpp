@@ -4,8 +4,8 @@
 #include "pulsar_parameters.h"
 #include "constants.h"
 #include "functions.h"
-#include "geometric_functions.h"
-#include "physical_functions.h"
+#include "process_functions.h"
+#include "auxilary.h"
 using namespace std;
 
 // most of functions should be local
@@ -145,6 +145,10 @@ vector <double> vUdr (double R) {
     vector <double> temp(3);
     temp[0] = SCALAR(vBetaR(R), vn);
     temp[1] = SCALAR(vBetaR(R), vm);
+    if (temp[0] * temp[0] + temp[1] * temp[1] >= 1.0) {
+      cout << "Error in vUdr\n";
+      exit (EXIT_FAILURE);
+    }
     temp[2] = sqrt(1 - pow(temp[0], 2) - pow(temp[1], 2));
     return temp;
 }

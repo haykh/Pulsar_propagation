@@ -4,7 +4,7 @@
 #include "pulsar_parameters.h"
 #include "constants.h"
 #include "functions.h"
-#include "physical_functions.h"
+#include "auxilary.h"
 using namespace std;
 
 double theta_em;
@@ -17,7 +17,7 @@ vector <double> b0 (double th, double ph, double PHI0) {
     n0[0] = sin(th) * cos(ph);
     n0[1] = sin(th) * sin(ph);
     n0[2] = cos(th);
-    
+
     vector <double> m(3);
     m[0] = sin(alpha) * cos(PHI0);
     m[1] = sin(alpha) * sin(PHI0);
