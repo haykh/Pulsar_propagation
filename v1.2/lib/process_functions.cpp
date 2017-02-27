@@ -184,7 +184,8 @@ double BetaB (double R) {
     return atan(by / bx);
 }
 
-double gFunc (double f, double R) {
+double gFunc (double R) {
+    double f = pow(sin(psi_m(R)), 2) * RLC / NORM(vR(R));
     double theta = ANGLE(vR(R), vOmega);
     double dtheta = 5.0 * PI / 180.0;
     double gap;
@@ -198,7 +199,7 @@ double gFunc (double f, double R) {
 double Ne (double R) {
     double f = pow(sin(psi_m(R)), 2) * RLC / NORM(vR(R));
     double nGJ = SCALAR(vOmega, vB(R)) * (B0 / pow(NORM(vR(R)), 3)) / (2 * PI * c * e);
-    return lambda * gFunc (f, R) * nGJ;
+    return lambda * gFunc (R) * nGJ;
 }
 
 double omegaB (double R) {

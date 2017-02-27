@@ -47,8 +47,8 @@ int main() {
     if (mode == 0) MODE = "X-mode";
     else MODE = "O-mode";
 
-    string name = "hump";
-    string path = "dats/test/";
+    string name = "test_new";
+    string path = "dats/";
 
     struct stat st = {0};
     if (stat(path.c_str(), &st) == -1) {
@@ -91,15 +91,15 @@ int main() {
     plot.close();
     return 0;
 */
-    for (double phi_t = -30; phi_t <= 15; phi_t += 1.0) { // Phase switch
+    for (double phi_t = -40; phi_t <= 40; phi_t += 1.0) { // Phase switch
         cout << "PHI: " << phi_t << endl;
         PHI0 = phi_t * PI / 180.0;
         findInitPoints (PHI0);
 
         double x1, x2, dep_vars[2];
-        x1 = 12.0;
-        if (RESCAPE < 1000.0) x2 = 1000.0;
-        else x2 = RESCAPE;
+        x1 = 0.0;
+        // if (RESCAPE < 1000.0) x2 = 1500.0;
+        x2 = 1.5 * RESCAPE;
 
         /*Initial values*/
         if (mode == 0) { // X-mode
@@ -112,8 +112,8 @@ int main() {
         /*--------------*/
 
         double PA = dep_vars[0] * 180 / PI;
-        double tau = PI * R_star * integrate(dtau, 1.0, RLC) / (c * omega);
-        double gf = gFunc(pow(sin(psi_m(0.0)), 2) * RLC / NORM(vR(0.0)), x1);
+        double tau = PI * R_star * integrate(dtau, x1, RLC) / (c * omega);
+        double gf = gFunc(x1);
         double II0 = gf;
         double II = II0 * exp (-tau);
 
@@ -127,8 +127,8 @@ int main() {
         VV = II * tanh(2.0 * dep_vars[1]);
         PA = dep_vars[0] * 180 / PI;
 
-        cout << "\tI: " << II << "\n\tV: " << VV << "\n\tPA: " << PA << endl << endl;
-        output1 << phi_t << " " << II << " " << VV << " " << PA << endl;
+        cout << "\tI: " << II << "\n\tV: " << VV << "\n\tPA: " << -PA << endl << endl;
+        output1 << phi_t << " " << II << " " << VV << " " << -PA << endl;
     }
     output0.close();
     output1.close();

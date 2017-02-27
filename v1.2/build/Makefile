@@ -7,7 +7,7 @@ CFLAGS = -std=c++11
 
 single_profile:
 	cp ${SNG_PATH}/src/main.cpp ../src/
-	cp ${SNG_PATH}/src/{pulsar_parameters.cpp,pulsar_parameters.h} ../lib/
+	cp ${SNG_PATH}/src/pulsar_parameters.* ../lib/
 	rm -f ../src/log.txt
 	touch ../src/log.txt
 	echo 'CURRENT: single_profile' >> ../src/log.txt
