@@ -59,8 +59,8 @@ vector <double> vBsplit (double R) {
 
     double psi1 = costh * cos(alpha) + sinth * sin(alpha) * cos(phi - PHI0 + Rr / RLC);
 
-    double Br = (fr / (Rr * Rr * RLC)) * tanh(psi1 / 0.1);
-    double Bphi = -(fphi * fr * sinth / (Rr * RLC * RLC)) * tanh(psi1 / 0.1);
+    double Br = (fr / (Rr * Rr * RLC)); // * tanh(psi1 / 0.1);
+    double Bphi = -(fphi * fr * sinth / (Rr * RLC * RLC)); // * tanh(psi1 / 0.1);
 
     Br *= pow(Rr, 3);
     Bphi *= pow(Rr, 3);
@@ -71,50 +71,50 @@ vector <double> vBsplit (double R) {
     temp[2] = Br * costh;
     return temp;
 }
-vector <double> vBtor (double R) {
-    double Rr = NORM(vR(R));
-
-    double rho = Rr * sin(psi_m(R));
-    double R0 = Rr * sqrt(Rr / RLC);
-
-    vector <double> temp(3);
-    if (rho > R0) {
-        temp[0] = 0.0;
-        temp[1] = 0.0;
-        temp[2] = 0.0;
-        return temp;
-    }
-
-    vector <double> n;
-    vector <double> m;
-    vector <double> O;
-    n = NORMALIZE(vR(R));
-    m = NORMALIZE(vMoment(R));
-    O = NORMALIZE(vOmega);
-
-    vector <double> nPerp;
-    vector <double> OPerp;
-    nPerp = NORMALIZE(SUM(n, TIMES(-SCALAR(n, m), m)));
-    OPerp = NORMALIZE(SUM(O, TIMES(-SCALAR(O, m), m)));
-
-    double varphi = PI + sgn(SCALAR(CROSS(OPerp, nPerp), m)) * ANGLE(OPerp, nPerp);
-
-    double COEFF = (-3.0 / 4.0) * sin(alpha);
-    double Brho = (COEFF * sin(varphi) / Rr) * (rho * rho - R0 * R0);
-    double Bvarphi = (COEFF * cos(varphi) / Rr) * (3.0 * rho * rho - R0 * R0);
-
-    double Bx1 = Brho * sin(varphi) + Bvarphi * cos(varphi);
-    double By1 = - Brho * cos(varphi) + Bvarphi * sin(varphi);
-
-    temp[0] = -Bx1 * sin(PHI0 + R / RLC) - By1 * cos(alpha) * cos(PHI0 + R / RLC);
-    temp[1] = Bx1 * cos(PHI0 + R / RLC) - By1 * cos(alpha) * sin(PHI0 + R / RLC);
-    temp[2] = By1 * sin(alpha);
-
-    return TIMES(BMULT, temp);
-}
+// vector <double> vBtor (double R) {
+//     double Rr = NORM(vR(R));
+//
+//     double rho = Rr * sin(psi_m(R));
+//     double R0 = Rr * sqrt(Rr / RLC);
+//
+//     vector <double> temp(3);
+//     if (rho > R0) {
+//         temp[0] = 0.0;
+//         temp[1] = 0.0;
+//         temp[2] = 0.0;
+//         return temp;
+//     }
+//
+//     vector <double> n;
+//     vector <double> m;
+//     vector <double> O;
+//     n = NORMALIZE(vR(R));
+//     m = NORMALIZE(vMoment(R));
+//     O = NORMALIZE(vOmega);
+//
+//     vector <double> nPerp;
+//     vector <double> OPerp;
+//     nPerp = NORMALIZE(SUM(n, TIMES(-SCALAR(n, m), m)));
+//     OPerp = NORMALIZE(SUM(O, TIMES(-SCALAR(O, m), m)));
+//
+//     double varphi = PI + sgn(SCALAR(CROSS(OPerp, nPerp), m)) * ANGLE(OPerp, nPerp);
+//
+//     double COEFF = (-3.0 / 4.0) * sin(alpha);
+//     double Brho = (COEFF * sin(varphi) / Rr) * (rho * rho - R0 * R0);
+//     double Bvarphi = (COEFF * cos(varphi) / Rr) * (3.0 * rho * rho - R0 * R0);
+//
+//     double Bx1 = Brho * sin(varphi) + Bvarphi * cos(varphi);
+//     double By1 = - Brho * cos(varphi) + Bvarphi * sin(varphi);
+//
+//     temp[0] = -Bx1 * sin(PHI0 + R / RLC) - By1 * cos(alpha) * cos(PHI0 + R / RLC);
+//     temp[1] = Bx1 * cos(PHI0 + R / RLC) - By1 * cos(alpha) * sin(PHI0 + R / RLC);
+//     temp[2] = By1 * sin(alpha);
+//
+//     return TIMES(BMULT, temp);
+// }
 
 vector <double> vB (double R) {
-    return SUM(SUM(vBsplit(R), vBdipole(R)), vBtor(R));
+    return SUM(vBsplit(R), vBdipole(R));
 }
 vector <double> vb (double R) {
     return NORMALIZE(vB(R));

@@ -1,6 +1,8 @@
 #pragma PULSAR_PARAMETERS
 using namespace std;
 
+double read_from_file (const string param);
+
 extern const double B12;
 extern const double B0;
 
@@ -22,13 +24,13 @@ extern const double BMULT;
 extern const double alpha_deg;
 extern const double beta_deg;
 
-extern double alpha;
-extern double beta;
-extern double dzeta;
+extern const double alpha;
+extern const double beta;
+extern const double dzeta;
 
 extern double PHI0;
 
-extern vector <double> vOmega;
+extern const vector <double> vOmega;
 
 extern const double R_em;
 

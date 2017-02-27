@@ -35,14 +35,6 @@ int main() {
     cout << "R_A: " << ROMODE << endl;
     cout << "R_lc: " << RLC << endl << endl;
 
-    alpha = alpha_deg * PI / 180.0; // Inclination angle in radians
-    beta = beta_deg * PI / 180.0; // Line of sight angle in radians;
-    dzeta = alpha - beta; // Minimum angle between the rotation axis and the line of sight
-
-    vOmega[0] = 0.0;
-    vOmega[1] = 0.0;
-    vOmega[2] = Omega;
-
     string MODE;
     if (mode == 0) MODE = "X-mode";
     else MODE = "O-mode";
@@ -69,7 +61,6 @@ int main() {
         << "\n\n" + MODE
         << "\nfr = " << fr
         << "\nfphi = " << fphi
-        << "\nBtor = " << BMULT
         << "\n\n\nR_LC = " << RLC
         << "\nR_escape = " << RESCAPE
         << "\nR_A = " << ROMODE;
@@ -91,7 +82,10 @@ int main() {
     plot.close();
     return 0;
 */
-    for (double phi_t = -40; phi_t <= 40; phi_t += 1.0) { // Phase switch
+    double phi_t_start = read_from_file("phi_start");
+    double phi_t_end = read_from_file("phi_end");
+    double phi_t_step = read_from_file("phi_step");
+    for (double phi_t = phi_t_start; phi_t <= phi_t_end; phi_t += phi_t_step) { // Phase switch
         cout << "PHI: " << phi_t << endl;
         PHI0 = phi_t * PI / 180.0;
         findInitPoints (PHI0);
