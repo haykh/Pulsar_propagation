@@ -50,11 +50,12 @@ vector <double> vBdipole (double R) {
 }
 vector <double> vBsplit (double R) {
     double Rr = NORM(vR(R));
+    double Rxy = sqrt(vR(R)[0] * vR(R)[0] + vR(R)[1] * vR(R)[1]);
 
     double costh = SCALAR(NORMALIZE(vR(R)), NORMALIZE(vOmega));
     double sinth = sqrt(1 - costh * costh);
-    double cosphi = vR(R)[0] / Rr;
-    double sinphi = vR(R)[1] / Rr;
+    double cosphi = vR(R)[0] / Rxy;
+    double sinphi = vR(R)[1] / Rxy;
     double phi = acos (cosphi);
 
     double psi1 = costh * cos(alpha) + sinth * sin(alpha) * cos(phi - PHI0 + Rr / RLC);
